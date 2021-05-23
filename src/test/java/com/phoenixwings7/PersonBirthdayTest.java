@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 /* These tests follow this naming convention: should_expectedBehavior_when_stateUnderTest */
 
-public class AppTest
+public class PersonBirthdayTest
 {
     private static Person person;
     @Before
