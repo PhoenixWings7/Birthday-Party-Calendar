@@ -10,10 +10,6 @@ public class BirthdayParty {
         this.birthdayDate = birthdayDate;
     }
 
-    BirthdayParty(int day, int month, int year) {
-        this.birthdayDate = LocalDate.of(year, month, day);
-    }
-
     public LocalDate getBirthdayPartyDate() {
         final int currentYear = LocalDate.now().getYear();
         return getBirthdayPartyDate(currentYear);

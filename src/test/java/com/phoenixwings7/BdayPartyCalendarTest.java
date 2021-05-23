@@ -45,8 +45,7 @@ public class BdayPartyCalendarTest {
         ArrayList<Person> people = new ArrayList<>();
         LocalDate initialDate = LocalDate.of(1999, 5, 13);
         for (int i = 0; i < amount*dayDifference; i+=dayDifference) {
-            Person testPerson = new Person("Alice"+i);
-            testPerson.setBirthday(initialDate.plusDays(i));
+            Person testPerson = new Person("Alice"+i, initialDate.plusDays(i));
             people.add(testPerson);
         }
         return people;

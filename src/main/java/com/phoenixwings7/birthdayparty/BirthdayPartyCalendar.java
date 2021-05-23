@@ -9,9 +9,10 @@ import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class BirthdayPartyCalendar {
     private ArrayList<Person> birthdayPeople = new ArrayList<>();
-    private HashMap<LocalDate, ArrayList<Person>> parties = new HashMap<>();
+    private final HashMap<LocalDate, ArrayList<Person>> parties = new HashMap<>();
 
     public BirthdayPartyCalendar(){}
 
@@ -74,7 +75,7 @@ public class BirthdayPartyCalendar {
 
         // assign birthday people to weeks of the month
         for(Person person: addedBdayPeople) {
-            LocalDate birthdayPartyDate = null;
+            LocalDate birthdayPartyDate;
             try {
                 birthdayPartyDate = person.getBirthdayPartyDateThisYear();
             } catch (NullDateException e) {
