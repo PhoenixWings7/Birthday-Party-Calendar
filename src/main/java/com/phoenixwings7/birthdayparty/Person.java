@@ -5,9 +5,9 @@ import com.phoenixwings7.customexceptions.NullDateException;
 import java.time.LocalDate;
 
 public class Person {
-    String name;
-    LocalDate birthday;
-    BirthdayParty birthdayParty;
+    private String name;
+    private LocalDate birthday;
+    private BirthdayParty birthdayParty;
 
     public Person(String name) {
         this.name = name;
