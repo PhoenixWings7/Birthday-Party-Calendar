@@ -45,7 +45,7 @@ public class Person {
         return birthdayParty.getBirthdayPartyDate();
     }
 
-    public String getBirthdayPartyDate(int year) throws NullDateException {
+    public LocalDate getBirthdayPartyDate(int year) throws NullDateException {
         if (birthday == null) {
             throw new NullDateException();
         }
@@ -53,6 +53,6 @@ public class Person {
             birthdayParty = new BirthdayParty(birthday);
         }
 
-        return birthdayParty.getBirthdayPartyDate(year).toString();
+        return birthdayParty.getBirthdayPartyDate(year);
     }
 }

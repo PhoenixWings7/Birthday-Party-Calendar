@@ -12,30 +12,34 @@ import java.util.HashMap;
 @SuppressWarnings("SpellCheckingInspection")
 public class BirthdayPartyCalendar {
     private ArrayList<Person> birthdayPeople = new ArrayList<>();
-    private final HashMap<LocalDate, ArrayList<Person>> parties = new HashMap<>();
 
     public BirthdayPartyCalendar(){}
 
     public BirthdayPartyCalendar(ArrayList<Person> birthdayPeople) {
         this.birthdayPeople = birthdayPeople;
-        calculateJointParties(birthdayPeople);
     }
 
     public HashMap<LocalDate, ArrayList<Person>> getJointPartiesData() {
-        return parties;
+        return getJointPartiesData(LocalDate.now().getYear());
+    }
+
+    // There were no way to ask for parties in specific year
+    public HashMap<LocalDate, ArrayList<Person>> getJointPartiesData(int year) {
+        return calculateJointParties(birthdayPeople, year);
     }
 
     public void addPeopleToCalendar(ArrayList<Person> birthdayPeople) {
         this.birthdayPeople.addAll(birthdayPeople);
-        calculateJointParties(birthdayPeople);
     }
 
     public ArrayList<Person> getBirthdayPeople() {
         return this.birthdayPeople;
     }
 
-    private void calculateJointParties(ArrayList<Person> addedBdayPeople) {
+    // Again, no way to ask for a specific year, so you could not test the input sample.
+    private HashMap<LocalDate, ArrayList<Person>> calculateJointParties(ArrayList<Person> addedBdayPeople, int year) {
         HashMap<Integer, ArrayList<Person>> birthdaysByWeekNum = getPeopleByWeekOfMonth(addedBdayPeople);
+        final var parties = new HashMap<LocalDate, ArrayList<Person>>();
 
         // go through the HashMap to figure out joint birthday dates
         // and add them into the people HashMap by date
@@ -46,7 +50,7 @@ public class BirthdayPartyCalendar {
             for (Person person: birthdaysThisWeek) {
                 LocalDate personBirthdayParty;
                 try {
-                    personBirthdayParty = person.getBirthdayPartyDateThisYear();
+                    personBirthdayParty = person.getBirthdayPartyDate(year);
                 } catch (NullDateException e) {
                     e.printStackTrace();
                     continue;
@@ -65,6 +69,7 @@ public class BirthdayPartyCalendar {
                 parties.put(birthdayDate, birthdaysThisWeek);
             }
         }
+        return parties;
     }
 
     private HashMap<Integer, ArrayList<Person>> getPeopleByWeekOfMonth(ArrayList<Person> addedBdayPeople) {
